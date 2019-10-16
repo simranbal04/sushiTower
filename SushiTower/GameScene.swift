@@ -13,10 +13,12 @@ class GameScene: SKScene {
     
     let cat = SKSpriteNode(imageNamed: "character1")
     let sushiBase = SKSpriteNode(imageNamed:"roll")
+    let background = SKSpriteNode(imageNamed: "background")
     
     override func didMove(to view: SKView) {
+        
         // add background
-        let background = SKSpriteNode(imageNamed: "background")
+//        let background = SKSpriteNode(imageNamed: "background")
         background.size = self.size
         background.position = CGPoint(x: self.size.width / 2, y: self.size.height / 2)
         background.zPosition = -1
@@ -45,6 +47,21 @@ class GameScene: SKScene {
         }
         
         print(mousePosition)
+        
+        //detect where person clicked on screen
+        let middleofScreen = self.size.width / 2
+        if(mousePosition.x < middleofScreen)
+        {
+            print("Tap Left")
+            // person clicked left so cat moves left
+            cat.position = CGPoint(x:self.size.width*0.25, y:100)
+        }
+        
+        else {
+            print("Tap Right")
+            // person clicked right so cat moves right
+            cat.position = CGPoint(x:self.size.width*0.85, y:100)
+        }
     }
     
 }
